@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suplidora Bonsai | Soluciones, Suministros e Importaciones de Empaque</title>
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           VARIABLES & CONFIGURACIÓN GLOBAL
+           ========================================== */
+        :root {
+            --primary: #0f6c9c;          /* Azul corporativo Bonsai */
+            --primary-dark: #094768;
+            --primary-light: #e6f3fa;
+            --accent: #f09b30;           /* Naranja cálido Bonsai */
+            --accent-hover: #d9841b;
+            --whatsapp: #25D366;         /* Verde oficial WhatsApp */
+            --whatsapp-dark: #1da851;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --card-shadow: 0 10px 25px -5px rgba(15, 108, 156, 0.08), 0 8px 10px -6px rgba(0,0,0,0.03);
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Layout Flex para footer pegado */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ==========================================
+           NAVEGACIÓN MULTI-SECCIÓN (TABS/PÁGINAS)
+           ========================================== */
+        header {
+            background-color: var(--bg-white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 95px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-box img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .logo-box:hover img {
+            transform: scale(1.03);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            background-color: #f1f5f9;
+            padding: 6px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .nav-link {
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: rgba(255,255,255,0.6);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary);
+            color: var(--bg-white);
+            box-shadow: 0 4px 12px rgba(15, 108, 156, 0.3);
+        }
+
+        .nav-link .icon {
+            font-size: 1.1rem;
+        }
+
+        /* Botón Mobile Hamburger */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* ==========================================
+           SISTEMA DE SECCIONES DIVIDIDAS (NO MURO)
+           ========================================== */
+        .page-section {
+            display: none; /* Oculta todas por defecto */
+            animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            padding: 3rem 0 4rem 0;
+        }
+
+        .page-section.active {
+            display: block; /* Muestra solo la activa */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HEADER DE SECCIÓN SEPARADA */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin: 10px auto 0 auto;
+        }
+
+        /* ==========================================
+           BOTONES Y ACCIONES
+           ========================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(240, 155, 48, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(15, 108, 156, 0.35);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: white;
+        }
+        .btn-whatsapp:hover {
+            background-color: var(--whatsapp-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* ==========================================
+           SECCIÓN 1: INICIO (HOME)
+           ========================================== */
+        .hero-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7fc 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-lg);
+            padding: 4rem 3rem;
+            box-shadow: var(--card-shadow);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(240,155,48,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            font-weight: 900;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+            display: block;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 580px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-container {
+            text-align: center;
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border: 2px solid #edf2f7;
+        }
+
+        .hero-image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 220px;
+            object-fit: contain;
+        }
+
+        /* Grid de Servicios Rápidos */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .feature-box {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           SECCIÓN 2: ACERCA DE NOSOTROS
+           ========================================== */
+        .about-wrapper {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 3.5rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .about-grid-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: #fff8f0;
+            border-left: 4px solid var(--accent);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: #f8fafc;
+            padding: 1.8rem;
+            border-radius: var(--radius-md);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .value-card h4 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           SECCIÓN 3: CATÁLOGO DE PRODUCTOS
+           ========================================== */
+        .catalog-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(15, 108, 156, 0.15);
+            border-color: var(--primary);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .product-img-wrapper {
+            height: 210px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            position: relative;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .product-body {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Banner de PDF de Catálogo */
+        .pdf-download-card {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 15px 30px rgba(9, 71, 104, 0.3);
+            flex-wrap: wrap;
+        }
+
+        .pdf-info h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .pdf-info p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+        }
+
+        /* ==========================================
+           SECCIÓN 4: CONTACTO Y UBICACIÓN
+           ========================================== */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 2.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-sidebar {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-sidebar h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon-bg {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .contact-form-box {
+            padding: 3.5rem 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: #f8fafc;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(15, 108, 156, 0.12);
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* MAPA INTERACTIVO / TARJETA UBICACIÓN */
+        .location-card {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .location-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================
+           BOTÓN FLOTANTE DE WHATSAPP CON PULSO
+           ========================================== */
+        .whatsapp-float-wrapper {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .whatsapp-tooltip {
+            background: #1e293b;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            animation: bounceLeft 2s infinite;
+        }
+
+        @keyframes bounceLeft {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
+            40% { transform: translateX(-6px); }
+            60% { transform: translateX(-3px); }
+        }
+
+        .whatsapp-btn-float {
+            width: 65px;
+            height: 65px;
+            background-color: var(--whatsapp);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .whatsapp-btn-float:hover {
+            transform: scale(1.1);
+            background-color: var(--whatsapp-dark);
+        }
+
+        .whatsapp-btn-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--whatsapp);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: pulseWave 2s infinite;
+        }
+
+        @keyframes pulseWave {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        footer {
+            background-color: #051d2b;
+            color: #94a3b8;
+            padding: 2.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+       .footer-brand img {
+    height: 45px;
+    opacity: 1; /* Sube la opacidad a 1 para que no se vea opaco */
+    /* filter: brightness(0) invert(1); <-- ELIMINA ESTA LÍNEA */
+}
+
+        /* ==========================================
+           RESPONSIVIDAD
+           ========================================== */
+        @media (max-width: 992px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+                text-align: center;
+            }
+            .hero-description { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .about-grid-top { grid-template-columns: 1fr; }
+            .contact-layout { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+
+            .nav-menu {
+                position: absolute;
+                top: 95px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+                display: none;
+            }
+
+            .nav-menu.mobile-active {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+            }
+
+            .section-title { font-size: 2rem; }
+            .whatsapp-tooltip { display: none; }
+            .contact-sidebar, .contact-form-box { padding: 2rem 1.5rem; }
+            .about-wrapper { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo-box" onclick="switchSection('inicio')">
+                <img src="image.png" alt="Suplidora Bonsai Logo">
+            </div>
+
+            <button class="hamburger" id="hamburger-btn" aria-label="Abrir Menú">☰</button>
+
+            <!-- Menú por Secciones Divididas -->
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-link active" data-target="inicio" onclick="switchSection('inicio')">
+                    <span class="icon">🏠</span> Inicio
+                </li>
+                <li class="nav-link" data-target="nosotros" onclick="switchSection('nosotros')">
+                    <span class="icon">🏢</span> Nosotros
+                </li>
+                <li class="nav-link" data-target="catalogo" onclick="switchSection('catalogo')">
+                    <span class="icon">📦</span> Catálogo
+                </li>
+                <li class="nav-link" data-target="contacto" onclick="switchSection('contacto')">
+                    <span class="icon">📍</span> Contacto
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ==========================================
+             SECCIÓN 1: INICIO (HOME)
+             ========================================== -->
+        <section id="sec-inicio" class="page-section active">
+            
+            <div class="hero-card">
+                <div>
+                    <span class="section-badge">Importadores Directos</span>
+                    <h1 class="hero-title">BONSAI <span>Soluciones & Empaque</span></h1>
+                    <p class="hero-description">
+                        Especialistas en la importación y distribución de insumos de empaque y embalaje industrial. Protegemos el valor de tus productos en todo Costa Rica.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="switchSection('catalogo')">
+                            Ver Catálogo Insumos
+                        </button>
+                        <a href="https://wa.me/50688888888?text=Hola%20Suplidora%20Bonsai,%20quisiera%20solicitar%20una%20cotizaci%C3%B3n." target="_blank" class="btn btn-whatsapp">
+                            💬 Cotizar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image-container">
+                    <img src="image.png" alt="Suplidora Bonsai Marca">
+                    <div style="margin-top: 15px; font-weight: 700; color: var(--primary);">
+                        Heredia, Costa Rica
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicios Destacados -->
+            <div class="section-header" style="margin-top: 4rem; margin-bottom: 2rem;">
+                <h2 class="section-title">¿Por qué elegir Suplidora Bonsai?</h2>
+                <p class="section-subtitle">Brindamos respuestas inmediatas a las exigencias logísticas de tu empresa.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">🚢</div>
+                    <h3>Importación Directa</h3>
+                    <p>Traemos suministros directamente de fábrica para garantizar el mejor precio del mercado.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Máxima Protección</h3>
+                    <p>Materiales de embalaje probados contra golpes, vibración y humedad logística.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Distribución Local</h3>
+                    <p>Entrega ágil desde nuestra sede en La Aurora de Heredia hacia todo el país.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">💼</div>
+                    <h3>Atención Corporativa</h3>
+                    <p>Asesoría personalizada para optimizar el gasto de tu empresa en empaques.</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             SECCIÓN 2: ACERCA DE NOSOTROS
+             ========================================== -->
+        <section id="sec-nosotros" class="page-section">
+            
+            <div class="section-header">
+                <span class="section-badge">Conócenos</span>
+                <h2 class="section-title">Acerca de Suplidora Bonsai</h2>
+                <p class="section-subtitle">Tu socio aliado en la cadena de suministros e importación de materiales de protección.</p>
+            </div>
+
+            <div class="about-wrapper">
+                <div class="about-grid-top">
+                    <div class="about-text">
+                        <h3>Soluciones Integrales de Empaque</h3>
+                        <p>
+                            <strong>Suplidora Bonsai</strong> es una empresa costarricense nacida en Heredia para abastecer a la industria nacional, comercios y pymes con insumos de embalaje de la más alta calidad.
+                        </p>
+                        <p>
+                            Nos especializamos en la <strong>importación directa y distribución estratégica</strong>. Entendemos que la presentación y seguridad de tus productos son clave para tu reputación de marca.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            📍 Ubicados estratégicamente cerca del CENADA y zonas francas en La Aurora de Heredia.
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <img src="image.png" alt="Bonsai Logo" style="max-width: 80%; height: auto; border-radius: 12px;">
+                    </div>
+                </div>
+
+                <!-- Pilares Empresariales -->
+                <div class="value-cards">
+                    <div class="value-card">
+                        <div style="font-size: 2rem;">🎯</div>
+                        <h4>Misión</h4>
+                        <p>Proveer empaques confiables que garanticen la integridad del producto durante su traslado.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div style="font-size: 2rem;">👁️</div>
+                        <h4>Visión</h4>
+                        <p>Ser la distribuidora e importadora referente en soluciones de embalaje en Costa Rica.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div style="font-size: 2rem;">🤝</div>
+                        <h4>Compromiso</h4>
+                        <p>Atención oportuna, inventario constante y flexibilidad a la necesidad de cada cliente.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             SECCIÓN 3: CATÁLOGO DE PRODUCTOS
+             ========================================== -->
+        <section id="sec-catalogo" class="page-section">
+            
+            <div class="section-header">
+                <span class="section-badge">Catálogo Comercial</span>
+                <h2 class="section-title">Insumos y Suministros</h2>
+                <p class="section-subtitle">Explora nuestra oferta de empaque y embalaje. Haz clic en WhatsApp para solicitar cotización directa.</p>
+            </div>
+
+            <!-- Filtros por categoría -->
+            <div class="catalog-controls">
+                <button class="filter-btn active" onclick="filterCatalog('all', this)">Todos los Insumos</button>
+                <button class="filter-btn" onclick="filterCatalog('empaque', this)">Empaque & Cajas</button>
+                <button class="filter-btn" onclick="filterCatalog('stretch', this)">Stretch Film & Cintas</button>
+                <button class="filter-btn" onclick="filterCatalog('proteccion', this)">Protección & Amortiguación</button>
+            </div>
+
+            <!-- Grilla de Productos -->
+            <div class="products-grid">
+                
+                <!-- Producto 1 -->
+                <div class="product-card" data-cat="empaque">
+                    <div class="product-img-wrapper">
+                        <span class="product-badge">Top Ventas</span>
+                        📦
+                    </div>
+                    <div class="product-body">
+                        <span class="product-category">Empaque Secundario</span>
+                        <h3 class="product-title">Cajas de Cartón Corrugado</h3>
+                        <p class="product-desc">Cajas ultra resistentes para envíos, almacenaje y exportación. Diferentes flautas y calibres disponibles.</p>
+                        <div class="product-footer">
+                            <a href="https://wa.me/50688888888?text=Hola%20Bonsai,%20me%20interesa%20cotizar:%20Cajas%20de%20Cart%C3%B3n" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 0.88rem;">
+                                💬 Cotizar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card" data-cat="stretch">
+                    <div class="product-img-wrapper">
+                        <span class="product-badge">Industrial</span>
+                        📜
+                    </div>
+                    <div class="product-body">
+                        <span class="product-category">Paletizado</span>
+                        <h3 class="product-title">Plástico Stretch Film</h3>
+                        <p class="product-desc">Película estirable manual y de máquina para paletizar. Alta retención de carga y estiramiento óptimo.</p>
+                        <div class="product-footer">
+                            <a href="https://wa.me/50688888888?text=Hola%20Bonsai,%20me%20interesa%20cotizar:%20Pl%C3%A1stico%20Stretch%20Film" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 0.88rem;">
+                                💬 Cotizar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card" data-cat="proteccion">
+                    <div class="product-img-wrapper">
+                        🫧
+                    </div>
+                    <div class="product-body">
+                        <span class="product-category">Amortiguación</span>
+                        <h3 class="product-title">Plástico Burbuja (Bubble Wrap)</h3>
+                        <p class="product-desc">Rollos de plástico de burbujas en diversos anchos para proteger fragilidad contra impactos en el tránsito.</p>
+                        <div class="product-footer">
+                            <a href="https://wa.me/50688888888?text=Hola%20Bonsai,%20me%20interesa%20cotizar:%20Pl%C3%A1stico%20Burbuja" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 0.88rem;">
+                                💬 Cotizar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card" data-cat="stretch">
+                    <div class="product-img-wrapper">
+                        📼
+                    </div>
+                    <div class="product-body">
+                        <span class="product-category">Sellado</span>
+                        <h3 class="product-title">Cintas Adhesivas de Empaque</h3>
+                        <p class="product-desc">Cintas de alto agarre transparentes, canela y personalizadas. Adhesivos para bajas y altas temperaturas.</p>
+                        <div class="product-footer">
+                            <a href="https://wa.me/50688888888?text=Hola%20Bonsai,%20me%20interesa%20cotizar:%20Cintas%20Adhesivas" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 0.88rem;">
+                                💬 Cotizar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="product-card" data-cat="proteccion">
+                    <div class="product-img-wrapper">
+                        🧱
+                    </div>
+                    <div class="product-body">
+                        <span class="product-category">Protección Bordes</span>
+                        <h3 class="product-title">Esquineros de Cartón</h3>
+                        <p class="product-desc">Refuerzo para tarimas y bordes de cajas. Evita aplastamiento de tarimas al empilar mercadería.</p>
+                        <div class="product-footer">
+                            <a href="https://wa.me/50688888888?text=Hola%20Bonsai,%20me%20interesa%20cotizar:%20Esquineros%20de%20Cart%C3%B3n" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 0.88rem;">
+                                💬 Cotizar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="product-card" data-cat="empaque">
+                    <div class="product-img-wrapper">
+                        ✉️
+                    </div>
+                    <div class="product-body">
+                        <span class="product-category">Envíos Rápidos</span>
+                        <h3 class="product-title">Sobres de Envío Acolchados</h3>
+                        <p class="product-desc">Sobres con burbuja interna y cierre autoadhesivo insustituible para envíos de mensajería seguros.</p>
+                        <div class="product-footer">
+                            <a href="https://wa.me/50688888888?text=Hola%20Bonsai,%20me%20interesa%20cotizar:%20Sobres%20Acolchados" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 0.88rem;">
+                                💬 Cotizar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CARD DESCARGA CATÁLOGO PDF -->
+            <div class="pdf-download-card">
+                <div class="pdf-info">
+                    <h3>📄 Catálogo General en PDF</h3>
+                    <p>Descarga la lista completa de especificaciones, dimensiones y ficha técnica.</p>
+                </div>
+                <a href="catalogo.pdf" download class="btn btn-primary" style="background: white; color: var(--primary-dark);">
+                    📥 Descargar PDF Completo
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             SECCIÓN 4: CONTACTO Y UBICACIÓN
+             ========================================== -->
+        <section id="sec-contacto" class="page-section">
+            
+            <div class="section-header">
+                <span class="section-badge">Ubicación & Consultas</span>
+                <h2 class="section-title">Contáctanos Hoy Mismo</h2>
+                <p class="section-subtitle">Estamos listos para atender tus requerimientos de abastecimiento e importación.</p>
+            </div>
+
+            <div class="contact-layout">
+                <!-- Información Lateral -->
+                <div class="contact-sidebar">
+                    <div>
+                        <h3>Información de Contacto</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon-bg">📍</div>
+                            <div>
+                                <h4>Dirección Exacta</h4>
+                                <p>Heredia, La Aurora, Del Cenada, 100 Norte, 25 metros Oeste, Frente al CEDI de la Casino.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon-bg">💬</div>
+                            <div>
+                                <h4>Atención Inmediata</h4>
+                                <p>WhatsApp Comercial disponible para cotizaciones y pedidos urgentes.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon-bg">⏱️</div>
+                            <div>
+                                <h4>Horario</h4>
+                                <p>Lunes a Viernes: 8:00 AM – 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón rápido WhatsApp lateral -->
+                    <a href="https://wa.me/50688888888?text=Hola%20Suplidora%20Bonsai,%20deseo%20contactar%20con%20un%20asesor." target="_blank" class="btn btn-whatsapp" style="width: 100%; margin-top: 1rem;">
+                        💬 Escribir Directo por WhatsApp
+                    </a>
+                </div>
+
+                <!-- Formulario de Mensaje -->
+                <div class="contact-form-box">
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="c-name">Nombre Completo / Empresa *</label>
+                            <input type="text" id="c-name" class="form-input" placeholder="Ej. Corporación Logística S.A." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="c-phone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="c-phone" class="form-input" placeholder="Ej. 8888-8888" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="c-msg">Detalle de Insumos Requeridos *</label>
+                            <textarea id="c-msg" class="form-input" placeholder="Indica cantidades, tipo de material o medidas que buscas..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            ✉️ Enviar Solicitud por Correo / Sistema
+                        </button>
+                    </form>
+
+                    <div class="location-card">
+                        <span style="font-size: 1.5rem;">🚚</span>
+                        <p style="margin-top: 5px;"><strong>¿Prefieres retirar en bodega?</strong><br>Visítanos en nuestras instalaciones en La Aurora de Heredia.</p>
+                        <a href="https://maps.google.com/?q=La+Aurora+Heredia+CENADA" target="_blank" class="btn btn-outline" style="font-size: 0.85rem; padding: 6px 16px;">
+                            🗺️ Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="image.png" alt="Suplidora Bonsai Footer Logo">
+                <span style="font-weight: 700; color: white;">Suplidora Bonsai</span>
+            </div>
+            <div>
+                &copy; 2026 <strong>Suplidora Bonsai</strong> — Soluciones, suministros e importaciones. Heredia, Costa Rica.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         BOTÓN FLOTANTE PERMANENTE DE WHATSAPP
+         ========================================== -->
+    <div class="whatsapp-float-wrapper">
+        <span class="whatsapp-tooltip">¡Escríbenos por WhatsApp! 👋</span>
+        <a href="https://wa.me/50688888888?text=Hola%20Suplidora%20Bonsai,%20necesito%20informaci%C3%B3n%20sobre%20sus%20productos." target="_blank" class="whatsapp-btn-float" aria-label="Contacto WhatsApp">
+            💬
+        </a>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT DE CONTROL DE SECCIONES DIVIDIDAS
+         ========================================== -->
+    <script>
+        // Función principal para cambiar de sección estilo TABS/PÁGINAS (No muro vertical)
+        function switchSection(targetId) {
+            // 1. Ocultar todas las secciones
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // 2. Desactivar todos los botones del menú
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // 3. Activar la sección requerida
+            const activeSection = document.getElementById('sec-' + targetId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+
+            // 4. Activar el botón del menú correspondiente
+            const activeLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // 5. Cerrar menú móvil si está abierto
+            document.getElementById('nav-menu').classList.remove('mobile-active');
+
+            // 6. Hacer scroll hacia arriba suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Filtro del Catálogo
+        function filterCatalog(category, btnElement) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(prod => {
+                if (category === 'all' || prod.getAttribute('data-cat') === category) {
+                    prod.style.display = 'flex';
+                } else {
+                    prod.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle Menú Hamburguesa Móvil
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('mobile-active');
+        });
+
+        // Envío de Formulario
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('c-name').value;
+            const phone = document.getElementById('c-phone').value;
+            const msg = document.getElementById('c-msg').value;
+
+            // Abrir WhatsApp con los datos del formulario pre-cargados
+            const waText = `Hola%20Suplidora%20Bonsai,%20mi%20nombre%20es%20${encodeURIComponent(name)}%20(Tel:%20${encodeURIComponent(phone)}).%20Consulta:%20${encodeURIComponent(msg)}`;
+            window.open(`https://wa.me/50688888888?text=${waText}`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
